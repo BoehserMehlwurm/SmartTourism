@@ -16,6 +16,7 @@ package com.google.codelabs.findnearbyplacesar
 
 import android.app.ActivityManager
 import android.content.Context
+import android.content.Intent
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -42,6 +43,8 @@ import com.google.codelabs.findnearbyplacesar.ar.PlaceNode
 import com.google.codelabs.findnearbyplacesar.ar.PlacesArFragment
 import com.google.codelabs.findnearbyplacesar.model.Place
 import com.google.codelabs.findnearbyplacesar.model.getPositionVector
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_second.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -77,6 +80,12 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         }
         setContentView(R.layout.activity_main)
 
+        secondActivityButton.setOnClickListener {
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
+
+
         arFragment = supportFragmentManager.findFragmentById(R.id.ar_fragment) as PlacesArFragment
         mapFragment =
             supportFragmentManager.findFragmentById(R.id.maps_fragment) as SupportMapFragment
@@ -84,6 +93,8 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
         sensorManager = getSystemService()!!
         placesService = PlacesService.create()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+
+
 
         setUpAr()
         setUpMaps()

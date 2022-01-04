@@ -16,4 +16,6 @@
 
 <resources>
   <string name="app_name">FindNearbyPlacesAr</string>
+  <string name="back">Back</string>
+  <string name="AR_start">AR Start</string>
 </resources>
